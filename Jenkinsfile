@@ -3,11 +3,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Hello World"'
-                sh '''
-                    echo "Multiline shell steps works too herbert"
-                    ls -lah
-                '''
+                sh 'echo"Our 1st build"'
+                sh 'singularity build python3.def python3.simg'
+            }
+        }
+       stage('test') {
+            steps {
+                sh 'singularity python3.simg exec python --version'
+            }
+        }
+        stage('Delpoy') {
+            steps {
+                sh 'We are in deployement'
             }
         }
     }

@@ -1,0 +1,34 @@
+Bootstrap: debootstrap
+MirrorURL: http://ftp.leg.uct.ac.za/ubuntu/
+OSVersion: xenial
+Include: software-properties-common
+
+%environment
+export INSTALLER_PATH=/installer
+export SOFTWARE_PATH=/software
+export LC_ALL=C
+
+%post
+        # Create Installation Directories and export paths. This is needed as part of post.
+        # %environment scriptlet does not define these paths during %post, only after.
+        mkdir -p /software/ /installer
+        export INSTALLER_PATH=/installer
+        export SOFTWARE_PATH=/software
+
+        #
+        apt-get update -y 
+        apt-get install -y wget vim apt-utils git
+        add-apt-repository -s ppa:kernsuite/kern-2
+        add-apt-repository ppa:jonathonf/python-3.6
+        apt-add-repository multiverse
+        apt-add-repository restricted
+        apt-get update -y 
+
+
+        #install python 3.6
+        apt-get install -y python3.6
+
+        #install pip
+        apt-get install -y python-pip python-dev build-essential
+        pip install --upgrade pip
+        pip install numpy

@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Our 1st build"'
-                sh 'singularity build python3.def python3.simg'
+                sh 'singularity build python3.simg python3.def'
             }
         }
        stage('test') {

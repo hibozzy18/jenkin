@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo"Our 1st build"'
+                sh 'echo "Our 1st build"'
                 sh 'singularity build python3.def python3.simg'
             }
         }
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Delpoy') {
             steps {
-                sh 'We are in deployement'
+                sh 'echo "We are in deployement "'
             }
         }
     }

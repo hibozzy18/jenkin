@@ -9,7 +9,7 @@ pipeline {
         }
        stage('test') {
             steps {
-                sh 'singularity python3.simg exec python --version'
+                sh 'singularity exec python3.simg  python --version'
             }
         }
         stage('Delpoy') {
